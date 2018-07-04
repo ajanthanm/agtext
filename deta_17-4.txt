@@ -1,0 +1,29 @@
+Yarn --> Show all details
+Add Yarn Thread details --> Back (whereit is required).
+bread crum
+Date range for Yarn delivery print option.
+select option for default.
+look and feel.
+Delete function.
+validation for all required.
+
+Yarn
+Yarn stock
+Add Color
+Add yarn shop
+
+
+Loom Customer
+View Customer
+Add design
+Add Customer
+
+new req:
+
+order by date in second table
+validation for amount
+delete function
+
+date for stock
+
+

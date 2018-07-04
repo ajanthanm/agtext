@@ -1,0 +1,47 @@
+print :
+-----------
+serial no order 1,2,3...
+customize print.
+
+thread delete
+
+color add/delete
+
+amount add/delete 
+
+
+color | weight | bag
+
+bag--- kg/60
+
+add thread from other
+
+yarn detail - add
+
+yarn -
+
+color -
+
+****************** 30/11
+Color - Edit is not pulling the data.
+
+Inventory - Add Purchase date Under thread details which s automatic currently.
+Yarn Shop name need to add in thread details.
+Remove Add thread button in thread details and add cancel.
+Delete record.
+
+Return Pavu details
+
+Date manaul
+meter * Amount = New field.
+While Closing - Change positive to negative.
+After Status update - Add message in bottom of the page.
+
+Carry forward - Need to add comments"Carry forward from 4 - 48 LALBAG"
+
+
+
+
+
+
+

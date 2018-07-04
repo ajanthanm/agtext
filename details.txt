@@ -1,0 +1,61 @@
+thread list
+---------
+count
+
+
+user-
+
+paavu name
+username
+paavu list
+--------------
+paavuname  date totalkg  return list  status  
+paavu n
+
+inside paavu list display
+--------------------
+color
+
+size
+
+Kg
+
+
+return piece
+------------
+
+date
+
+roles
+
+weight in kg
+
+meter
+
+rate p/m
+
+amount (m*rate)
+
+
+thread details
+-----------------
+yarn dealer
+
+
+paavu details
+--------------
+date
+
+status button
+-------------
+
+close - paavu close 
+
+carry forward -  
+assign to another paavu
+
+
+
+
+
+

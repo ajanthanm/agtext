@@ -1,0 +1,47 @@
+CREATE TABLE `coloramount` (
+  `id` int(20) NOT NULL,
+  `yarnid` int(20) NOT NULL,
+  `color` int(20) NOT NULL,
+  `kg` double NOT NULL,
+  `price` double NOT NULL,
+  `date` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `yarnbillings` (
+  `id` int(20) NOT NULL,
+  `yarnshopid` int(20) NOT NULL,
+  `billno` varchar(50) NOT NULL,
+  `billdate` varchar(50) NOT NULL,
+  `taxamount` double NOT NULL,
+  `taxpercentage` double NOT NULL,
+  `totalamount` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `yarnbillamount` (
+  `id` int(20) NOT NULL,
+  `yarnbillid` int(20) NOT NULL,
+  `amount` double NOT NULL,
+  `date` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `yarnbillamount`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `coloramount`
+  ADD PRIMARY KEY (`id`);
+--
+-- Indexes for table `yarnbillings`
+--
+ALTER TABLE `yarnbillings`
+  ADD PRIMARY KEY (`id`);
+  
+ALTER TABLE `yarnbillamount`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+--
+-- AUTO_INCREMENT for table `yarnbillings`
+--
+ALTER TABLE `yarnbillings`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  
+ALTER TABLE `coloramount`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
