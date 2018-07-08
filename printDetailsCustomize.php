@@ -7,7 +7,7 @@ $prtno = $printno[0]["printno"];
 ?>
 
 <center><h3>Thread Delivery Slip</h3></center>
-
+<div class="back"><a href="printDetails.php?userid=<?php echo $userid; ?>"><input type="button" value="Back" class="btn btn-info"></a></div>
 
 
 

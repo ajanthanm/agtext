@@ -27,7 +27,7 @@ if($updateCon) {
 <center><h3>Thread Delivery Slip</h3></center>
 
 
-
+<div class="back"><a href="paavu.php?userid=<?php echo $userid; ?>"><input type="button" value="Back" class="btn btn-info"></a></div>
 <div align="right"><button><a href='printDetailsCustomize.php?userid=<?php echo $userid; ?>'>Print details</a></button></div>
 
 <?php
@@ -171,7 +171,7 @@ if(!$select){
 
 <div style="width:700px;padding-top:5px;" >
 <div align="left" style="float:left;width:220px" >Party signature</div>
-<div align="left" style="float:left;width:220px;font-size:16px;" ><b>Total bags - <?php echo $totalbags; ?> </b></div>
+<div align="left" style="float:left;width:220px;font-size:16px;" ><b>Total bags - <?php echo round($totalbags,2); ?> </b></div>
 <div align="right" style="float:right;">For Agathiar textiles <br/><img style="width:135px;height:50px;" src="img/signimg.jpg" /></div>
 </div>
 </div>

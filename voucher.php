@@ -11,6 +11,8 @@ $prtno = $printno[0]["vocuherid"]+1;
 if($_POST && $_POST['amount']){
 	$data["userid"] = $_POST['userid'];
 	$data["amount"] = $_POST['amount'];
+	$data["type"] = $_POST['type'];
+	$data["amountdetail"] = $_POST['amountdetail'];
 	$data["voucherid"] = $prtno;
 	$data["date"] = time();
 	insertData("transactions", $data);
@@ -53,13 +55,14 @@ if($_POST && $_POST['amount']){
 </select></td></tr>
 
 <tr><td>Given amount</td><td><input type="text" name="amount" class="validate[custom[number]]"></td></tr>
-<tr><td>Amount type</td><td><select name="type" class="validate[required]">
+<tr><td>Amount type</td><td><select name="type" >
 <option value="">--select--</option>
-<option value="cash">Cash</option>
-<option value="cheque">Cheque</option>
-<option value="rtgs">Rtgs</option>
-</select>
-</td><td>
+<option value="Cash">Cash</option>
+<option value="Cheque">Cheque</option>
+<option value="RTGS/NEFT">RTGS/NEFT</option>
+</select> <input type="text" name="amountdetail" >
+</td><td></tr>
+<tr><td></td><td>
 <input type="submit" id="submit" value="Submit & print" class="btn btn-primary"></td></tr>
 </table>
 </form>
