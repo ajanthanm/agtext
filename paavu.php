@@ -30,7 +30,10 @@ if (mysql_num_rows($select) > 0) {
   }
   $users = getSingleData('users',$userid);
 //$fetch=mysql_fetch_array($select);
+
 ?>
+
+
 <center><h3>Paavu details - <?php echo $users[0]['name']; ?></h3></center>
 <div class="back"><a href="users.php"><input type="button" value="Back" class="btn btn-info"></a></div>
 <div align="right"><a href="addpaavu.php?userid=<?php echo $userid; ?>"><input type="button" value="Addpaavu" class="btn btn-primary"></a></div>
@@ -73,4 +76,38 @@ $('#example1').DataTable({
 
 
 </body>
+<br>
+<br>
+<?php
+$select=mysql_query("SELECT * FROM `transactions` where userid = '".$userid."' order by id desc");
+$sno = 1;
+$total = 0;
+$paavuamnount = 0;
+
+while($fetch = mysql_fetch_assoc($select)) {
+if($fetch["paavuid"] == 0){
+	$paavuid = getSingleData("returnpavudetails", $fetch["paavudetailid"]);
+	$paavuid = empty($paavuid)?0:$paavuid[0]['paavuid'];
+} else {
+	$paavuid = $fetch["paavuid"];
+}
+
+$paavus = getSingleData('paavus',$paavuid);
+if(!empty($paavus)){
+	$paavuno = $paavus[0]['paavuno'].'-'.getDataByName('designs', $paavus[0]['name'], 'name');
+}else{
+	$paavuno = '';
+}
+
+$total += $fetch["amount"];
+$paavuamnount += $fetch["paavu_amount"];
+
+}
+?>
+<strong>
+Voucher Amount :<?php echo $total; ?><br/>
+Cooli Amount :<?php echo $paavuamnount; ?><br/>
+------------------------------<br/>
+Balance Amount : <?php echo  (float)$paavuamnount - (float)$total; ?>
+</strong>
 </html>

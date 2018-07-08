@@ -1,6 +1,6 @@
 <?php
 mysql_connect("localhost","root","");
-mysql_select_db("agtext_1819_1");
+mysql_select_db("agtext_1819_07");
 
 function insertData($table, $data){
 	$sql = "insert into {$table} ";
