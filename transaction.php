@@ -71,7 +71,7 @@ if($_POST && isset($_POST['amount'])){
 </thead>
 <tbody>
 <?php
-$select=mysql_query("SELECT * FROM `transactions` order by id desc");
+$select=mysql_query("SELECT * FROM `transactions` where userid = '".$userid."' order by id desc");
 $sno = 1;
 $total = 0;
 $paavuamnount = 0;
