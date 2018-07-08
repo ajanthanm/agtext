@@ -171,7 +171,11 @@ while($fetch = mysql_fetch_assoc($select)) {
 $returnKg = $returnKg+$fetch["weight"];
 if($fetch["carry_paavuid"] != 0){
 		$carry_paavus = getSingleData('paavus',$fetch["carry_paavuid"]);
-		$carryfor = "carry forward from: ".$carry_paavus[0]['paavuno']."-".getDataByName('designs', $carry_paavus[0]['name'], 'name');
+		if(empty($carry_paavus)) {
+			$carryfor = 'carry forward from paavu';
+		} else {
+			$carryfor = "carry forward from: ".$carry_paavus[0]['paavuno']."-".getDataByName('designs', $carry_paavus[0]['name'], 'name');
+		}
 	} else {
 		$carryfor = '';
 	}

@@ -43,12 +43,12 @@ $sn = 1;
 $totalkg = 0;
 foreach($threads as $k=>$v) {
 	$gkg = (isset($givenkg[$k]))?$givenkg[$k]:0;
-	$balnce = $v - $gkg;
+	$balnce = round($v,2) - round($gkg, 2);
 	$name = getDataByName('color', $k, 'name');
 	$polychk = strpos(strtolower($name), 'poly');
 	
 	if($balnce && $polychk === false){
-	    $totalkg = $totalkg + $balnce;
+		$totalkg = $totalkg + $balnce;
 		echo "<tr><td>".$sn++."</td><td>".$name."</td><td>".$balnce."</td><td>".($balnce/60)."</td></tr>";
 	}
 }
