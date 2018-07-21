@@ -108,6 +108,6 @@ $paavuamnount += $fetch["paavu_amount"];
 Voucher Amount :<?php echo $total; ?><br/>
 Cooli Amount :<?php echo $paavuamnount; ?><br/>
 ------------------------------<br/>
-Balance Amount : <?php echo  (float)$paavuamnount - (float)$total; ?>
+Balance Amount : <?php echo  round(((float)$paavuamnount - (float)$total), 2); ?>
 </strong>
 </html>
