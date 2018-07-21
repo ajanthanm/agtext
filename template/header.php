@@ -1,7 +1,7 @@
 <?php
 mysql_connect("localhost","root","");
-mysql_select_db("agtext_1819_07");
-
+mysql_select_db("agtext_1819");
+$currentYear = strtotime("01-04-2018");
 function insertData($table, $data){
 	$sql = "insert into {$table} ";
 	$field = "";

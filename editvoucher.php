@@ -11,7 +11,7 @@ $prtno = $printno[0]["vocuherid"]+1;
 if(isset($_POST['id'])){
 	$data["userid"] = $_POST['userid'];
 	$data["amount"] = $_POST['amount'];
-	
+	$data["type"] = $_POST['type'];
 	$updateData["id"] = $_POST["id"];
 	updateData("transactions",$data,$updateData);
 
@@ -57,8 +57,23 @@ echo "<input type='hidden' name='id' value='".$transaction[0]['id']."'>";
 </select></td></tr>
 
 <tr><td>Given amount</td><td><input type="text" name="amount" class="validate[custom[number]]" value="<?php echo ($edit)?$transaction[0]['amount']:''; ?>" ></td></tr>
+<tr><td>Type</td><td><select name="type" class="validate[required]">
+<option value="">--select--</option>
+<?php
+$type = ["Cash", "Cheque", "RTGS/NEFT"];
+	foreach($type as $key=>$val){
+		if($val == $transaction[0]['type'] ){
+			$sel = 'selected';
+		} else {
+			$sel = '';
+		}
+		echo "<option ".$sel." value=".$val.">".$val."</option>";
+	}
+?>
+</select></td></tr>
 <tr><td>
-<input type="submit" id="submit" value="Submit" class="btn btn-primary"></td></tr>
+<input type="submit" id="submit" value="Submit" class="btn btn-primary"></td><td>
+<a href="voucher.php?userid=<?php echo $userid; ?>"><input type="button" id="submit" value="Cancel" class="btn btn-primary"></a></td></tr>
 </table>
 </form>
 </center>

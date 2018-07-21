@@ -16,7 +16,7 @@ if(isset($_REQUEST['userid']) && $_REQUEST['yarnprintno'] == 0) {
 }
 
 $time = strtotime('today');
-$sql = "select a.name, b.date, b.color, b.kg, b.printno, c.id, c.yarn, c.kg as yarnkg from paavus a, paavudetails b, threads c where a.userid = {$userid} and a.id = b.paavuid and b.threadid = c.id and c.yarn = {$yarn} and c.yarnprintno = {$yarnprintno}";
+$sql = "select a.name, b.date, b.color, b.kg, b.printno, c.id, c.yarn, c.kg as yarnkg from paavus a, paavudetails b, threads c where a.userid = {$userid} and a.id = b.paavuid and b.threadid = c.id and c.yarn = {$yarn} and c.yarnprintno = {$yarnprintno} and b.date > {$currentYear}";
 $select=getSqlData($sql);
 
 //$condition = "a.id = b.paavuid and b.color != 0 and b.printno = {$printnodet}";
@@ -53,15 +53,15 @@ if(!$select){
 }
 </style>
 
-<div style="width:440px;" >
-<div class="row"><div style="float:left;width:130px;">Off 04324-232467</div><div style="float:left;width:150px;padding-left:20px;font-weight:bold;text-decoration:underline;" >Yarn purchase slip</div><div style="float:right;" >cell:94437 32465</div></div>
+<div style="width:490px;" >
+<div class="row"><div style="float:left;width:185px;"><div ><strong>GST NO:</strong>33AAAFA9848E1ZL</div></div><div style="float:left;width:150px;padding-left:20px;font-weight:bold;text-decoration:underline;" >Yarn purchase slip</div><div style="float:right;" >cell:94437 32465</div></div>
 <div class="row"><div align="center" class="textcolor">Agathiar textiles</div></div>
-<div class="row" align="center" style="font-size:18px;">65, Kamarajapuram, Sengunthapuram post, karur - 2</div>
+<div class="row" align="center" style="font-size:18px;">65, Kamarajapuram west, Sengunthapuram post, karur - 2</div>
 <div class="row" style="padding:10px 0;"><div style="float:left;width:100px;">No. <?php echo $displayNo; ?> </div><div style="float:right;">Date : <?php echo date('d-m-Y');?></div></div><br/>
 <div class="row"  ><strong>Mr. <?php echo getDataByName('yarns', $select[0]["yarn"], 'name'); ?></strong></div>
 
 </div>
-<table class="tableprint" style="width:440px;font-size:20px;">
+<table class="tableprint" style="width:490px;font-size:20px;">
 	<thead>
 		<tr >
 			<td>S.No</td>

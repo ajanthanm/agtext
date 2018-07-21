@@ -59,7 +59,7 @@ while($fetch = mysql_fetch_assoc($select)) {
 	if($fetch["status"] == 1){
 		$st = "Closed";
 	}
-echo "<tr><td>".$fetch["paavuno"]."</td><td><a href='paavudetails.php?userid={$userid}&paavuid=".$fetch["id"]."'>".getDataByName('designs', $fetch["name"], 'name')."</a></td><td>".getDataByName('users', $fetch["userid"], 'name')."</td><td>".$fetch["date"]."</td><td>".$fetch["color"]."</td><td>{$st}</td><td><a href='addpaavu.php?id=".$fetch["id"]."&userid=".$userid."'>Edit</a></td></tr>";
+echo "<tr><td>".$fetch["paavuno"]."</td><td><a href='paavudetails.php?userid={$userid}&paavuid=".$fetch["id"]."'>".getDataByName('designs', $fetch["name"], 'name')."</a></td><td>".getDataByName('users', $fetch["userid"], 'name')."</td><td>".date("d-m-Y",strtotime($fetch["date"]))."</td><td>".$fetch["color"]."</td><td>{$st}</td><td><a href='addpaavu.php?id=".$fetch["id"]."&userid=".$userid."'>Edit</a></td></tr>";
 $sno++;
 }
 

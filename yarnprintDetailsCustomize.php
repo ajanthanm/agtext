@@ -6,14 +6,14 @@ $users = getSingleData('users',$userid);
 ?>
 
 <center><h3>Thread Delivery Slip</h3></center>
-
+<div class="back"><a href="yarnprintDetails.php?userid=<?php echo $userid; ?>"><input type="button" value="Back" class="btn btn-info"></a></div>
 
 
 
 
 <?php
 $time = strtotime('today');
-$sql = "select a.name, b.date, b.color, b.kg, b.printno, b.id, c.yarn, c.yarnprintno from paavus a, paavudetails b, threads c where a.userid = {$userid} and a.id = b.paavuid and b.threadid = c.id group by c.yarnprintno";
+$sql = "select a.name, b.date, b.color, b.kg, b.printno, b.id, c.yarn, c.yarnprintno from paavus a, paavudetails b, threads c where a.userid = {$userid} and a.id = b.paavuid and b.threadid = c.id and c.date > {$currentYear} group by c.yarnprintno";
 $select=getSqlData($sql);
 
 //$fetch=mysql_fetch_array($select);

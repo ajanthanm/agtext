@@ -7,6 +7,7 @@ $prtno = $printno[0]["printno"];
 ?>
 
 <center><h3>Yarn printdetails </h3></center>
+<div class="back"><a href="paavu.php?userid=<?php echo $userid; ?>"><input type="button" value="Back" class="btn btn-info"></a></div>
 <div align="right"><button><a href='yarnprintDetailsCustomize.php?userid=<?php echo $userid; ?>'>Print details</a></button></div>
 
 <?php
