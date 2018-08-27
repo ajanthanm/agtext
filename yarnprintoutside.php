@@ -84,8 +84,14 @@ if(!$select){
 	?>
 		<tr >
 			<td><?php echo $j++; ?></td>
-			<td><?php echo getDataByName('color', $fetch["color"], 'name'); ?></td>
-			<td><?php echo $fetch["kg"]/60; ?></td>
+			<td><?php echo $design_name = getDataByName('color', $fetch["color"], 'name'); ?></td>
+			<td><?php
+				if(strpos(strtolower($design_name), 'poly') !== false){
+					echo $fetch["kg"]." Kg";
+				} else {
+			 		echo round(($fetch["kg"]/60),2);
+			 	}	
+			?></td>
 		</tr>
 	<?php } ?>	
 	</tbody>

@@ -32,10 +32,10 @@ if (mysql_num_rows($select) > 0) {
 //$fetch=mysql_fetch_array($select);
 
 ?>
-
-
 <center><h3>Paavu details - <?php echo $users[0]['name']; ?></h3></center>
-<div class="back"><a href="users.php"><input type="button" value="Back" class="btn btn-info"></a></div>
+<div class="back"><a href="users.php"><input type="button" value="Back" class="btn btn-info"></a> <a href="printDetails.php?userid=<?php echo $userid; ?>"><input type="button" value="Delivery print" class="btn btn-info"></a> <a href="yarnprintDetails.php?userid=<?php echo $userid; ?>"><input type="button" value="Yarn print" class="btn btn-info"></a></div>
+
+
 <div align="right"><a href="addpaavu.php?userid=<?php echo $userid; ?>"><input type="button" value="Addpaavu" class="btn btn-primary"></a></div>
 
 
