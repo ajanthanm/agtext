@@ -12,7 +12,7 @@ if(!empty($_POST)){
 	//print_r($_POST);
 	$data['yarnbillid'] = $_POST['billid']; 
 	$data['amount'] = $_POST['amount'];
-	$data['date']= time();
+	$data['date']= strtotime($_POST['date']);
 	insertData("yarnbillamount", $data);
 	
 	$url = 'yarnbillingdetails.php';
@@ -33,6 +33,8 @@ if($edit){
 <td><?php if(isset($yarndata['name']))echo ($yarndata['name']); ?></td></tr>
 <tr><td>Amount</td>
 <td><input type="text" name="amount" size="25" class='validate[required, custom[number]]' ></td></tr>
+<tr><td>Bill date</td><td><input id="datepicker" class='validate[required] datepicker' style="width:150px;" type="text" name="date"  value="<?php if(isset($thread['date']))echo date('d-m-Y',$thread['date']); ?>"></td>
+</tr>
 <tr><td></td><td><input type="submit" <?php echo (!$edit)?"id='submit'":''?> value="Submit" class="btn btn-primary"></td></tr>
 </table>
 </form>

@@ -17,6 +17,10 @@ if($edit){
 <table >
 <tr><td>Design name</td>
 <td><input type="text" name="name" size="25" class='validate[required, ajax[ajaxNameCall]]' title="<?php if(isset($thread['id'])){ echo $thread['id'];} else {echo '0';} ?>" id='designid' value="<?php if(isset($thread['name']))echo ($thread['name']); ?>"></td></tr>
+<tr><td height="35">From value</td>
+<td><input type="text" name="fromvalue" class='validate[required]' size="25" value="<?php if(isset($thread['fromvalue']))echo ($thread['fromvalue']); ?>"></td></tr>
+<tr><td height="35">To value</td>
+<td><input type="text" name="tovalue" class='validate[required]' size="25" value="<?php if(isset($thread['tovalue']))echo ($thread['tovalue']); ?>"></td></tr>
 <tr><td></td><td><input type="submit" <?php echo (!$edit)?"id='submit'":''?> value="Submit" class="btn btn-primary"></td></tr>
 </table>
 </form>

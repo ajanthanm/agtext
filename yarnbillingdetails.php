@@ -52,12 +52,12 @@ if (mysql_num_rows($select) > 0) {
 //print_r($fetch);
 $i=1;
 while($fetch = mysql_fetch_assoc($select)) {
-	$billamount = getSingleDataByName("yarnbillamount", $fetch["yarnshopid"],"yarnbillid");
+	$billamount = getSingleDataByName("yarnbillamount", $fetch["id"],"yarnbillid");
 	$amount = '';
 	$totalamnt = 0;
 	if($billamount){
 		foreach($billamount as $k=>$v){
-			$amount .= $v['amount'].",";
+			$amount .= $v['amount']."(".date('d-m-y',$v['date'])."),";
 			$totalamnt = $totalamnt + $v['amount'];
 		}
 		$amount = rtrim($amount,",");

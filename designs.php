@@ -7,6 +7,8 @@ include('template/header.php');
 
 if($_POST) {
 	$data['name']=$_POST["name"];
+	$data['fromvalue']=$_POST["fromvalue"];
+	$data['tovalue']=$_POST["tovalue"];
 	//$data['date']=time();
 	
 	if(isset($_POST["id"])) {
@@ -32,6 +34,8 @@ if (mysql_num_rows($select) > 0) {
 <tr>
 <th>S.No</th>
 <th>Design Name</th>
+<th>From value</th>
+<th>To value</th>
 <th>Action</th>
 </tr>
 </thead>
@@ -40,7 +44,7 @@ if (mysql_num_rows($select) > 0) {
 //print_r($fetch);
 $sno = 1;
 while($fetch = mysql_fetch_assoc($select)) {
-echo "<tr><td>{$sno}</td><td>".$fetch["name"]."</td><td>"."<a href='add_design.php?id=".$fetch["id"]."'>edit</a></td></tr>";
+echo "<tr><td>{$sno}</td><td>".$fetch["name"]."</td><td>".$fetch["fromvalue"]."</td><td>".$fetch["tovalue"]."</td><td>"."<a href='add_design.php?id=".$fetch["id"]."'>edit</a></td></tr>";
 $sno++;
 }
 ?>

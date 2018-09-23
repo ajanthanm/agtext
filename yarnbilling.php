@@ -173,7 +173,7 @@ echo "<input type='hidden' name='colorid[]' value='".$thread['id']."'>";
 <tr ><td>Tax amount</td><td><select name="taxpercentage" class='validate[required] tax' onchange="selectTax(this.value)" style="width:150px">
 <option value="">--select--</option>
 <option value="5" <?php if($threadc && $threadc['taxpercentage'] == '5'){ echo "selected='selected'"; } ?>>5%</option>
-<option value="18" <?php if($threadc && $threadc['taxpercentage'] == '18'){ echo "selected='selected'"; } ?>>18%</option>
+<option value="12" <?php if($threadc && $threadc['taxpercentage'] == '12'){ echo "selected='selected'"; } ?>>12%</option>
 <option value="amount" <?php if($threadc && $threadc['taxamount'] != 0){ echo "selected='selected'"; } ?> >amount</option>		
 </select></td>
 <td><span id="amntlbl" style="display:none;">amount</span></td><td><input class='' type="text" name="taxamount" size="5" style="width:150px;display:none;" value="<?php if(isset($threadc['taxamount']))echo $threadc['taxamount']; ?>"  id="taxamt" onblur="updateamnt()"></td>

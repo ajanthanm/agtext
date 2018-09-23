@@ -16,7 +16,7 @@ $users = getSingleData('users',$userid);
 $prevpaavu = getSqlData("select * from paavus where id < {$paavuid} and userid = {$userid} and status = 0 order by id desc limit 1");
 $nextpaavu = getSqlData("select * from paavus where id > {$paavuid} and userid = {$userid} and status = 0 order by id asc limit 1");
 
-
+$desings = getSingleData('designs',$paavus[0]['name']);
 ?>
 <div id="print">
 <center><h3 style="color:blue;"><?php echo $users[0]['name']; ?></h3></center>
@@ -184,10 +184,17 @@ if(($fetch["meter"]+$fetch["roles"]) == 0){
 }else{
 	$meter = round($fetch["weight"]/($fetch["meter"]+$fetch["roles"]),3);
 }
+
+if($desings[0]['fromvalue'] && $desings[0]['fromvalue'] <= $meter && $desings[0]['tovalue'] >= $meter) {
+	$meterstyle = "";
+
+} else {
+	$meterstyle = "style='background:red;'";
+}	
 $totalroles = $totalroles + $fetch["roles"];
 $totalmeter = $totalmeter + $fetch["meter"];
 $totalamount = $totalamount + ($fetch["amount"]*$fetch["meter"]);
-echo "<tr><td>".$i++."</td><td>".getDataByName('designs', $fetch["design"], 'name')."</td><td>".$fetch["roles"]."</td><td>".$fetch["weight"]."</td><td>".$fetch["meter"]."</td><td>".$fetch["amount"]."</td><td>".($fetch["amount"]*$fetch["meter"])."</td><td>".$meter."</td><td>".$carryfor."</td><td>".date('d-m-Y',$fetch["date"])."</td><td><button class='btn btn-info cbtn' onclick=\"redirect('return_paavudetails.php?id=".$fetch["id"]."&paavuid=".$paavuid."&userid=".$userid."')\">Edit</button></td></tr>";
+echo "<tr><td>".$i++."</td><td>".getDataByName('designs', $fetch["design"], 'name')."</td><td>".$fetch["roles"]."</td><td>".$fetch["weight"]."</td><td>".$fetch["meter"]."</td><td>".$fetch["amount"]."</td><td>".($fetch["amount"]*$fetch["meter"])."</td><td ".$meterstyle.">".$meter."</td><td>".$carryfor."</td><td>".date('d-m-Y',$fetch["date"])."</td><td><button class='btn btn-info cbtn' onclick=\"redirect('return_paavudetails.php?id=".$fetch["id"]."&paavuid=".$paavuid."&userid=".$userid."')\">Edit</button></td></tr>";
 }
 ?>
 </tbody>
