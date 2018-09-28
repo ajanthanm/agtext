@@ -184,13 +184,15 @@ if(($fetch["meter"]+$fetch["roles"]) == 0){
 }else{
 	$meter = round($fetch["weight"]/($fetch["meter"]+$fetch["roles"]),3);
 }
+$meterstyle = "";
+if($desings[0]['fromvalue'] > 0 && $desings[0]['tovalue'] > 0){
+	if($desings[0]['fromvalue'] && $desings[0]['fromvalue'] <= $meter && $desings[0]['tovalue'] >= $meter) {
+		$meterstyle = "";
 
-if($desings[0]['fromvalue'] && $desings[0]['fromvalue'] <= $meter && $desings[0]['tovalue'] >= $meter) {
-	$meterstyle = "";
-
-} else {
-	$meterstyle = "style='background:red;'";
-}	
+	} else {
+		$meterstyle = "style='background:red;'";
+	}	
+}
 $totalroles = $totalroles + $fetch["roles"];
 $totalmeter = $totalmeter + $fetch["meter"];
 $totalamount = $totalamount + ($fetch["amount"]*$fetch["meter"]);
