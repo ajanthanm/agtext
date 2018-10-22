@@ -87,7 +87,7 @@ while($fetch = mysql_fetch_assoc($select)) {
 		
 		$totalamount = $cottonRate + $poly300 + $poly150 +($couliamnt+1.25);
 		
-		echo "<tr><td>{$i}</td><td>".($fetch["name"])."</td><td>".round($avgwait['avgwait'],3)."</td><td>".round($cottonWeight,3)."</td><td>".$cottonRate."</td><td>".round($poly300,3)."</td><td>".round($poly150,3)."</td><td>".($couliamnt+1.25)."</td><td>".round($totalamount,3)."</td></tr>";
+		echo "<tr><td>{$i}</td><td>".($fetch["name"])."</td><td>".round($avgwait['avgwait'],3)."</td><td>".round($cottonWeight,3)."</td><td>".$cottonRate."</td><td>".round($poly300,2)."</td><td>".round($poly150,2)."</td><td>".round(($couliamnt+1.25),2)."</td><td>".round($totalamount,2)."</td></tr>";
 		$i++;
 	}
 }
