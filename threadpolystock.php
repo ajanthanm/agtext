@@ -44,15 +44,16 @@ if (mysql_num_rows($select1) > 0) {
 </thead>
 <tbody>
 <?php
-
+$colors = getData('color');
 $sn = 1;
 $totalbalnce = 0;
-foreach($threads as $k=>$v) {
-	$gkg = (isset($givenkg[$k]))?$givenkg[$k]:0;
-	$minuskg = (isset($threadsMinus[$k]))?$threadsMinus[$k]:0;
-	
-	$balnce = $v - $gkg;
-	$name = getDataByName('color', $k, 'name');
+
+foreach($colors as $k=>$v) {
+	$gkg = (isset($givenkg[$v['id']]))?$givenkg[$v['id']]:0;
+	$minuskg = (isset($threadsMinus[$v['id']]))?$threadsMinus[$v['id']]:0;
+	$threadskg = (isset($threads[$v['id']]))?$threads[$v['id']]:0;
+	$balnce = ($threadskg) - $gkg;
+	$name = getDataByName('color', $v['id'], 'name');
 	$polychk = strpos(strtolower($name), 'poly');
 	
 	if($balnce && $polychk !== false){
