@@ -104,7 +104,7 @@ if($edit){
 
 <?php
 $time = strtotime('today');
-$sql = "select * from threads where outsideyarn = 1 group by yarnprintno";
+$sql = "select * from threads group by yarnprintno";
 $select=getSqlData($sql);
 
 //$fetch=mysql_fetch_array($select);

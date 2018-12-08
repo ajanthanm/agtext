@@ -1,6 +1,6 @@
 <?php
 mysql_connect("localhost","root","");
-mysql_select_db("agtext_1819");
+mysql_select_db("agtext_1819_1022");
 $currentYear = strtotime("01-04-2018");
 function insertData($table, $data){
 	$sql = "insert into {$table} ";
@@ -437,6 +437,7 @@ function redirect(url){
 						<li><a href="designs.php">Add design</a></li>
 						<li><a href="addusers.php">Add Customer</a></li>
 						<li><a href="printAllDetails.php">Print Details</a></li>
+						<li><a href="paavulist.php">Paavu List</a></li>
 					  </ul>
 					</div>
 				  </li>
