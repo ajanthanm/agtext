@@ -1,6 +1,6 @@
 <?php 
 mysql_connect("localhost","root","");
-mysql_select_db("agtext");
+mysql_select_db("agtext_0819");
 /* RECEIVE VALUE */
 $validateValue=$_REQUEST['fieldValue'];
 $validateId=$_REQUEST['fieldId'];
@@ -18,6 +18,7 @@ $validateSuccess= "This username is available";
 
 if($validateId =="userid"){
 	$value = getSingleDataByName("users",$validateValue, "name",$validateValueId);
+	
 	if(empty($value)){	
 		$arrayToJs[1] = true;
 	}else{

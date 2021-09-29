@@ -81,8 +81,9 @@ if($_POST) {
 	
 }
 
-$select=mysql_query("SELECT * FROM `threads` {$colorcond} ORDER BY date desc");
-if (mysql_num_rows($select) > 0) {
+global $con;
+$select=mysqli_query($con, "SELECT * FROM `threads` {$colorcond} ORDER BY date desc");
+if (mysqli_num_rows($select) > 0) {
     // output data of each row
     
   }
@@ -104,7 +105,7 @@ if (mysql_num_rows($select) > 0) {
 <?php
 echo "hhh";
 $threadColor = 0;
-while($fetch = mysql_fetch_assoc($select)) {
+while($fetch = mysqli_fetch_assoc($select)) {
 	
 	$threadColor = $threadColor + $fetch["kg"];
 //echo "<tr><td>".$fetch["threadno"]."</td><td>".date('d-m-Y',$fetch["date"])."</td><td>".$fetch["kg"]."</td><td>".$fetch["price"]."</td><td>".getDataByName('color', $fetch["color"], 'name')."</td><td>".getDataByName('yarns', $fetch["yarn"], 'name')."</td><td>"."<a href='addthread.php?id=".$fetch["id"]."'>edit</a></td></tr>";

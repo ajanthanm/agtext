@@ -80,7 +80,7 @@ if($_POST) {
 	
 	
 }
-
+echo "SELECT * FROM `threads` {$colorcond} ORDER BY date desc";
 $select=mysql_query("SELECT * FROM `threads` {$colorcond} ORDER BY date desc");
 if (mysql_num_rows($select) > 0) {
     // output data of each row
@@ -116,13 +116,14 @@ while($fetch = mysql_fetch_assoc($select)) {
 echo "<tr><td>".$fetch["threadno"]."</td><td>".date('d-m-Y',$fetch["date"])."</td><td>".$kg."</td><td>".$fetch["price"]."</td><td>".getDataByName('color', $fetch["color"], 'name')."</td><td>".getDataByName('yarns', $fetch["yarn"], 'name')."</td><td>"."<a href='addthread.php?id=".$fetch["id"]."'>edit</a></td></tr>";
 $threadColor = $threadColor + abs($kg);
 }
+echo $threadColor;
 ?>
 </tbody>
 </table>
 <br/>
 <?php
 //$select=getSqlData("SELECT a.kg as kg, c.name as name, a.color as color, a.date as date FROM paavudetails a, paavus b, users c WHERE a.paavuid = b.id and b.userid = c.id and a.date > '".strtotime('2018-04-01')."' {$colorReturn} ORDER BY a.date desc");
-
+echo "SELECT * FROM paavudetails a {$colorReturn} ORDER BY a.date desc";
 $select=getSqlData("SELECT * FROM paavudetails a {$colorReturn} ORDER BY a.date desc");
 //echo "SELECT a.kg as kg, a.color as color, a.date as date FROM paavudetails a {$colorReturn} ORDER BY a.date desc";
 //$fetch=mysql_fetch_array($select);

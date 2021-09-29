@@ -41,7 +41,6 @@ foreach($userTransaction as $key=>$val) {
 	insertData("transactions", $data);
 }
 
-mysql_query("update paavudetails set printno = 0");
-mysql_query("update threads set yarnprintno = 0");
+
 
 ?>

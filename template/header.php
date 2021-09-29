@@ -1,8 +1,10 @@
 <?php
-mysql_connect("localhost","root","");
-mysql_select_db("agtext_1819_1022");
-$currentYear = strtotime("01-04-2018");
+//echo phpinfo();
+$con = mysqli_connect("localhost","root","");
+mysqli_select_db($con, "agtext_2122");
+$currentYear = strtotime("01-04-2021");
 function insertData($table, $data){
+	global $con;
 	$sql = "insert into {$table} ";
 	$field = "";
 	$fieldData = "";
@@ -14,10 +16,11 @@ function insertData($table, $data){
 	$field = rtrim($field, ",");
 	$fieldData = rtrim($fieldData, ",");
 	$sql .= "(".$field.") values (".$fieldData.")";
-	mysql_query($sql);
+	mysqli_query($con, $sql);
 }
 
 function updateData($table, $data, $id){
+	global $con;
 	$sql = "UPDATE {$table} set ";
 	$field = "";
 	$fieldData = "";
@@ -30,14 +33,18 @@ function updateData($table, $data, $id){
 		$updateValue = $val;
 	}
 	$sql .= $field." where ".$updateName." = '".$updateValue."'";
-	mysql_query($sql);
+	mysqli_query($con, $sql);
 }
 
 function getData($tablename, $order=''){
+	global $con;
+	if($tablename == 'color') {
+		 $order='order by name asc';
+	}
 	$sql = "select * from {$tablename} {$order}";
-	$select=mysql_query($sql);
+	$select=mysqli_query($con, $sql);
 	$i=0;
-	while($fetch = mysql_fetch_assoc($select)) {
+	while($fetch = mysqli_fetch_assoc($select)) {
 		$data[$i] = $fetch;
 		$i++;
 	}
@@ -45,11 +52,12 @@ function getData($tablename, $order=''){
 }
 
 function getSingleData($tablename, $id){
+	global $con;
 	$sql = "select * from {$tablename} where id = {$id}";
-	$select=mysql_query($sql);
+	$select=mysqli_query($con, $sql);
 	$i=0;
 	$data = [];
-	while($fetch = mysql_fetch_assoc($select)) {
+	while($fetch = mysqli_fetch_assoc($select)) {
 		$data[$i] = $fetch;
 		$i++;
 	}
@@ -57,17 +65,19 @@ function getSingleData($tablename, $id){
 }
 
 function deleteData($tablename, $column ,$id){
+	global $con;
 	$sql = "delete from {$tablename} where {$column} = {$id}";
-	mysql_query($sql);
+	mysqli_query($con, $sql);
 	
 }
 
 function getSqlData($sql){
+	global $con;
 	//$sql = "select * from {$tablename} where id = {$id}";
-	$select=mysql_query($sql);
+	$select=mysqli_query($con, $sql);
 	$i=0;
 	$data = [];
-	while($fetch = mysql_fetch_assoc($select)) {
+	while($fetch = mysqli_fetch_assoc($select)) {
 		$data[$i] = $fetch;
 		$i++;
 	}
@@ -75,11 +85,12 @@ function getSqlData($sql){
 }
 
 function getDataByName($tablename, $id, $fieldName){
+	global $con;
 	if($id){
 	$sql = "select * from {$tablename} where id = {$id}";
-	$select=mysql_query($sql);
+	$select=mysqli_query($con,$sql);
 	$i=0;
-	while($fetch = mysql_fetch_assoc($select)) {
+	while($fetch = mysqli_fetch_assoc($select)) {
 		$data[$i] = $fetch;
 		$i++;
 	}
@@ -91,11 +102,12 @@ function getDataByName($tablename, $id, $fieldName){
 }
 
 function getSingleDataByName($tablename, $val, $name){
+	global $con;
 	$sql = "select * from {$tablename} where {$name} = {$val}";
-	$select=mysql_query($sql);
+	$select=mysqli_query($con, $sql);
 	$i=0;
 	$data = [];
-	while($fetch = mysql_fetch_assoc($select)) {
+	while($fetch = mysqli_fetch_assoc($select)) {
 		$data[$i] = $fetch;
 		$i++;
 	}
@@ -111,11 +123,12 @@ function checkData($value){
 }
 
 function avgwait($id, $stdate, $endate){
+	global $con;
 	$sql = "select sum(roles) as roles, sum(weight) as weight, sum(meter) as meter, sum(amount) as amount from returnpavudetails where design = {$id} and date > '{$stdate}' and date < '{$endate}' and meter != 0 and amount != 0";
-	$select=mysql_query($sql);
+	$select=mysqli_query($con, $sql);
 	$i=0;
 	$data = [];
-	while($fetch = mysql_fetch_assoc($select)) {
+	while($fetch = mysqli_fetch_assoc($select)) {
 		if($fetch['weight'] != ''){
 			$data["avgwait"] = $fetch['weight']/($fetch['roles']+$fetch['meter']);
 			$data["couliamount"] = (($fetch['amount']*$fetch['meter'])/$fetch['meter']);
@@ -127,13 +140,14 @@ function avgwait($id, $stdate, $endate){
 }
 
 function coulirate($id, $stdate, $endate){
+	global $con;
 	$sql = "select (meter * amount) as totalamount, meter from returnpavudetails where design = {$id} and date > '{$stdate}' and date < '{$endate}' and meter != 0 and amount != 0";
-	$select=mysql_query($sql);
+	$select=mysqli_query($con, $sql);
 	$i=0;
 	$data = 0;
 	$totalamount = 0;
 	$totalmeter = 0;
-	while($fetch = mysql_fetch_assoc($select)) {
+	while($fetch = mysqli_fetch_assoc($select)) {
 		$totalamount = $totalamount + $fetch['totalamount'];
 		$totalmeter = $totalmeter + $fetch['meter'];
 	}
@@ -143,11 +157,12 @@ function coulirate($id, $stdate, $endate){
 }
 
 function yarnrate($stdate, $endate){
+	global $con;
 	$sql = "SELECT sum(a.price*a.kg) as price, sum(kg) as kg from color c, coloramount a where c.name like '10%' and c.id = a.color and a.date > '{$stdate}' and a.date < '{$endate}'";
-	$select=mysql_query($sql);
+	$select=mysqli_query($con, $sql);
 	$i=0;
 	$data = 0;
-	while($fetch = mysql_fetch_assoc($select)) {
+	while($fetch = mysqli_fetch_assoc($select)) {
 		if($fetch['price'] != ''){
 			$data = ($fetch['price']/$fetch['kg']);
 		}
@@ -156,11 +171,12 @@ function yarnrate($stdate, $endate){
 }
 
 function yarnrateByName($stdate, $endate, $name){
+	global $con;
 	$sql = "SELECT sum(a.price*a.kg) as price, sum(kg) as kg from color c, coloramount a where c.name like '{$name}%' and c.id = a.color and a.date > '{$stdate}' and a.date < '{$endate}'";
-	$select=mysql_query($sql);
+	$select=mysqli_query($con, $sql);
 	$i=0;
 	$data = 0;
-	while($fetch = mysql_fetch_assoc($select)) {
+	while($fetch = mysqli_fetch_assoc($select)) {
 		if($fetch['price'] != ''){
 			$data = ($fetch['price'])/($fetch['kg']);
 		}
@@ -169,14 +185,15 @@ function yarnrateByName($stdate, $endate, $name){
 }
 
 function yarnrateByPolyName($stdate, $endate, $name){
+	global $con;
 	$data = 0;
 	$kg = 0;
 	foreach($name as $k=>$val){
 		$sql = "SELECT a.* from color c, coloramount a where c.name like '{$val}%' and c.id = a.color and a.date > '{$stdate}' and a.date < '{$endate}' order by a.id desc limit 1";
-		$select=mysql_query($sql);
+		$select=mysqli_query($con, $sql);
 		$i=0;
 		
-		while($fetch = mysql_fetch_assoc($select)) {
+		while($fetch = mysqli_fetch_assoc($select)) {
 			if($fetch['price'] != ''){
 				$data = $data + ($fetch['price']*$fetch['kg']);
 			}
@@ -381,19 +398,7 @@ function editData($data, $val){
 			}
 		}
 	 jQuery(document).ready(function(){
-			jQuery("#formID").validationEngine('attach', {
-  onValidationComplete: function(form, status){
-    //alert("The form status is: " +status+", it will never submit");
-	$("#submit").attr('disabled','disabled');
-	if(status){
-		
-	form.validationEngine('detach');
-	form.submit();
-	} else {
-		$("#submit").removeAttr('disabled','disabled');
-	}	
-  }  
-});
+			jQuery("#formID").validationEngine();
 			
 		$('form').attr('autocomplete', 'off');	
 			//$("#formID").bind("jqv.field.result", function(event, field, errorFound, prompText){ console.log(errorFound) })
@@ -450,6 +455,8 @@ function redirect(url){
 						<li><a href="viewreports.php">View reports</a></li>
 						<li><a href="lalbagreports.php">Lalbag reports</a></li>
 						<li><a href="kamalreports.php">Kamal reports</a></li>
+						<li><a href="sixerreports.php">sixer reports</a></li>
+						<li><a href="PolyCheckedreports.php">Poly Mini reports</a></li>
 					  </ul>
 					</div>
 				  </li>
